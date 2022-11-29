@@ -41,10 +41,24 @@
 
  ### POST /user/create/
   Creates user (only for admins). If user created, returns 201.
+  #### Example request data
+  ```json
+  {
+      "login": "alexdenkk",
+      "password": "12345678",
+      "role": 2
+  }
+  ```
 
  ### PUT /user/id/
   Update user record (user can only update himself, admins can also update users).
   If user correctly updated, returns 200.
- 
+  #### Example request data
+  ```json
+  {
+      "login": "alexdenkk"
+  }
+  ```
+
  ### DELETE /user/id/
   Deletes user (only for admins). If user deleted, returns 200.
