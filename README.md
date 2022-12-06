@@ -1,5 +1,5 @@
 # books
-Books reviews API written with Go/Jwt/Mux
+Books reviews API written with Go/Jwt/Mux/Docker/Postgres
 
 # services
 - users
