@@ -2,12 +2,12 @@ package http
 
 import (
 	"alexdenkk/books/pkg/token"
-	"net/http"
 	"context"
 	"encoding/json"
+	"net/http"
 )
 
-func (h *Handler) ChangePassword(w http.ResponseWriter, r *http.Request, claims *token.Claims) {
+func (h *Handler) ChangePassword(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	var request ChangePasswordRequest
 
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
@@ -17,7 +17,7 @@ func (h *Handler) ChangePassword(w http.ResponseWriter, r *http.Request, claims 
 
 	ctx := context.WithValue(context.Background(), "request", r)
 
-	err := h.Service.ChangePassword(ctx, request.New, request.Old, claims)
+	err := h.Service.ChangePassword(ctx, request.New, request.Old, act)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

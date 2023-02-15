@@ -1,8 +1,8 @@
 package hash
 
 import (
-    "crypto/sha1"
-    "encoding/base64"
+	"crypto/sha1"
+	"encoding/base64"
 )
 
 func Hash(text string) string {

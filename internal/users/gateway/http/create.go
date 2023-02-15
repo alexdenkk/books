@@ -3,12 +3,12 @@ package http
 import (
 	"alexdenkk/books/model"
 	"alexdenkk/books/pkg/token"
-	"net/http"
 	"context"
 	"encoding/json"
+	"net/http"
 )
 
-func (h *Handler) Create(w http.ResponseWriter, r *http.Request, claims *token.Claims) {
+func (h *Handler) Create(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	var user model.User
 
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
@@ -18,7 +18,7 @@ func (h *Handler) Create(w http.ResponseWriter, r *http.Request, claims *token.C
 
 	ctx := context.WithValue(context.Background(), "request", r)
 
-	err := h.Service.Create(ctx, user, claims)
+	err := h.Service.Create(ctx, user, act)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

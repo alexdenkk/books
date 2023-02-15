@@ -8,4 +8,5 @@ func Migrate(db *gorm.DB) {
 	db.AutoMigrate(&User{})
 	db.AutoMigrate(&Book{})
 	db.AutoMigrate(&Review{})
+	db.AutoMigrate(&Genre{})
 }

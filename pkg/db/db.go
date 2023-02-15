@@ -1,10 +1,11 @@
 package db
 
 import (
-	"gorm.io/gorm"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm/logger"
 	"strings"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func Connect(dbName, dbPort, dbUser, dbPassword string) (*gorm.DB, error) {

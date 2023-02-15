@@ -28,14 +28,17 @@ func main() {
 		dbPswd,
 	)
 
-	model.Migrate(appDB)
-
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	log.Println("db connected")
+
+	model.Migrate(appDB)
+
 	// create app
 	booksApp := app.New(appDB, []byte(jwt), addr)
+	log.Println("app initialized")
 
 	// run
 	log.Fatal(booksApp.Run())
@@ -48,6 +51,5 @@ func parseFlags() {
 	flag.StringVar(&dbPort, "db-port", "5432", "database port")
 	flag.StringVar(&dbUser, "db-user", "alexdenkk", "database user")
 	flag.StringVar(&dbPswd, "db-password", "", "database password")
-
 	flag.Parse()
 }

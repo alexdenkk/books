@@ -2,14 +2,15 @@ package http
 
 import (
 	"alexdenkk/books/pkg/token"
-	"github.com/gorilla/mux"
-	"net/http"
 	"context"
-	"strconv"
 	"encoding/json"
+	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
-func (h *Handler) Update(w http.ResponseWriter, r *http.Request, claims *token.Claims) {
+func (h *Handler) Update(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
 	ctx := context.WithValue(context.Background(), "request", r)
@@ -26,7 +27,7 @@ func (h *Handler) Update(w http.ResponseWriter, r *http.Request, claims *token.C
 		return
 	}
 
-	err = h.Service.Update(ctx, user, claims)
+	err = h.Service.Update(ctx, user, act)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

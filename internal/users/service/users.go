@@ -1,13 +1,14 @@
 package service
 
 import (
-	"alexdenkk/books/model"
 	"alexdenkk/books/internal/users"
+	"alexdenkk/books/model"
 	"alexdenkk/books/pkg/hash"
 	"alexdenkk/books/pkg/token"
-	"github.com/golang-jwt/jwt/v4"
 	"context"
 	"time"
+
+	"github.com/golang-jwt/jwt/v4"
 )
 
 func (s *Service) Get(ctx context.Context, id uint) (model.User, error) {
@@ -55,7 +56,7 @@ func (s *Service) Update(ctx context.Context, user model.User, act *token.Claims
 	}
 
 	// block editing admins
-	if prev.Role == model.ADMIN  && act.ID != user.ID {
+	if prev.Role == model.ADMIN && act.ID != user.ID {
 		return users.PermissionsError
 	}
 
@@ -86,7 +87,7 @@ func (s *Service) Delete(ctx context.Context, id uint, act *token.Claims) error 
 
 	// block deleting another users for non admins
 	if act.Role != model.ADMIN && act.ID != id {
-		return users.PermissionsError	
+		return users.PermissionsError
 	}
 
 	// block deleting admins
@@ -112,9 +113,9 @@ func (s *Service) Login(ctx context.Context, login, password string) (string, er
 
 	// generating token
 	claims := token.Claims{
-		ID: user.ID,
+		ID:    user.ID,
 		Login: user.Login,
-		Role: user.Role,
+		Role:  user.Role,
 
 		StandardClaims: &jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(time.Hour * 1000).Unix(),
@@ -136,9 +137,9 @@ func (s *Service) Register(ctx context.Context, login, password string) error {
 
 	// register new user
 	user := model.User{
-		Login: login,
+		Login:    login,
 		Password: hash.Hash(password),
-		Role: model.USER,
+		Role:     model.USER,
 	}
 
 	return s.Repository.Create(ctx, user)

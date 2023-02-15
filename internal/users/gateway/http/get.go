@@ -1,11 +1,12 @@
 package http
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
 	"context"
-	"strconv"
 	"encoding/json"
+	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 func (h *Handler) Get(w http.ResponseWriter, r *http.Request) {

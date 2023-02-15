@@ -2,14 +2,17 @@ package app
 
 import (
 	"alexdenkk/books/pkg/middleware"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func (app *App) Route() {
 	r := mux.NewRouter()
 
 	app.RouteUsers(r)
+	app.RouteBooks(r)
+	app.RouteReviews(r)
 
 	r.HandleFunc("/",
 		func(w http.ResponseWriter, r *http.Request) {
@@ -39,4 +42,48 @@ func (app *App) RouteUsers(r *mux.Router) {
 		Methods("POST")
 	sub.HandleFunc("/change-password/", app.MW.Auth(app.UsersHandler.ChangePassword)).
 		Methods("POST")
+}
+
+func (app *App) RouteBooks(r *mux.Router) {
+	sub := r.PathPrefix("/book").Subrouter()
+
+	sub.HandleFunc("/{id:[0-9]+}/", app.BooksHandler.Get).
+		Methods("GET")
+	sub.HandleFunc("/create/", app.MW.Auth(app.BooksHandler.Create)).
+		Methods("POST")
+	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.BooksHandler.Update)).
+		Methods("PUT")
+	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.BooksHandler.Delete)).
+		Methods("DELETE")
+}
+
+func (app *App) RouteReviews(r *mux.Router) {
+	sub := r.PathPrefix("/book").Subrouter()
+
+	sub.HandleFunc("/{id:[0-9]+}/", app.ReviewsHandler.Get).
+		Methods("GET")
+	sub.HandleFunc("/create/", app.MW.Auth(app.ReviewsHandler.Create)).
+		Methods("POST")
+	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.ReviewsHandler.Update)).
+		Methods("PUT")
+	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.ReviewsHandler.Delete)).
+		Methods("DELETE")
+	sub.HandleFunc("/for/{id}:[0-9]+/", app.ReviewsHandler.GetFor).
+		Methods("GET")
+	sub.HandleFunc("/for/{id}:[0-9]+/", app.MW.Auth(app.ReviewsHandler.DeleteFor))
+}
+
+func (app *App) RouteGenres(r *mux.Router) {
+	sub := r.PathPrefix("/genre").Subrouter()
+
+	sub.HandleFunc("/{id:[0-9]+}/", app.GenresHandler.Get).
+		Methods("GET")
+	sub.HandleFunc("/create/", app.MW.Auth(app.GenresHandler.Create)).
+		Methods("POST")
+	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.GenresHandler.Update)).
+		Methods("PUT")
+	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.GenresHandler.Delete)).
+		Methods("DELETE")
+	sub.HandleFunc("/all/", app.GenresHandler.GetAll).
+		Methods("GET")
 }
