@@ -5,6 +5,12 @@ import (
 	"context"
 )
 
+func (r *Repository) GetAll(ctx context.Context) ([]model.Book, error) {
+	var books []model.Book
+	result := r.DB.Find(&books)
+	return books, result.Error
+}
+
 func (r *Repository) Get(ctx context.Context, id uint) (model.Book, error) {
 	var book model.Book
 	result := r.DB.First(&book, id)

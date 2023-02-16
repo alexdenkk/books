@@ -55,6 +55,8 @@ func (app *App) RouteBooks(r *mux.Router) {
 		Methods("PUT")
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.BooksHandler.Delete)).
 		Methods("DELETE")
+	sub.HandleFunc("/all/", app.BooksHandler.GetAll).
+		Methods("GET")
 }
 
 func (app *App) RouteReviews(r *mux.Router) {

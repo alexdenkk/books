@@ -7,6 +7,7 @@ import (
 )
 
 type Service interface {
+	GetAll(ctx context.Context) ([]model.Book, error)
 	Get(ctx context.Context, id uint) (model.Book, error)
 	Create(ctx context.Context, book model.Book, act *token.Claims) error
 	Update(ctx context.Context, book model.Book, act *token.Claims) error

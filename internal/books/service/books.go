@@ -9,6 +9,10 @@ import (
 	"time"
 )
 
+func (s *Service) GetAll(ctx context.Context) ([]model.Book, error) {
+	return s.Repository.GetAll(ctx)
+}
+
 func (s *Service) Get(ctx context.Context, id uint) (model.Book, error) {
 	return s.Repository.Get(ctx, id)
 }
