@@ -4,6 +4,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
+// GenerateJWT - generates the JWT token
 func GenerateJWT(claims Claims, key []byte) (string, error) {
 	t := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
@@ -16,6 +17,7 @@ func GenerateJWT(claims Claims, key []byte) (string, error) {
 	return tokenString, nil
 }
 
+// ParseJWT - decode JWT token or return error
 func ParseJWT(token string, key []byte) (*Claims, error) {
 
 	t, err := jwt.ParseWithClaims(token, &Claims{}, func(token *jwt.Token) (interface{}, error) {

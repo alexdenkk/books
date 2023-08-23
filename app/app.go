@@ -2,10 +2,10 @@ package app
 
 import (
 	//handlers
-	books_handler "alexdenkk/books/internal/books/gateway/http"
-	genres_handler "alexdenkk/books/internal/genres/gateway/http"
-	reviews_handler "alexdenkk/books/internal/reviews/gateway/http"
-	users_handler "alexdenkk/books/internal/users/gateway/http"
+	books_handler "alexdenkk/books/service/books/gateway/http"
+	genres_handler "alexdenkk/books/service/genres/gateway/http"
+	reviews_handler "alexdenkk/books/service/reviews/gateway/http"
+	users_handler "alexdenkk/books/service/users/gateway/http"
 
 	"alexdenkk/books/pkg/middleware"
 	"log"
@@ -15,6 +15,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// App - server app struct
 type App struct {
 	UsersHandler   *users_handler.Handler
 	BooksHandler   *books_handler.Handler
@@ -26,12 +27,14 @@ type App struct {
 	DB             *gorm.DB
 }
 
+// Run - function for run app
 func (app *App) Run() error {
 	app.Route()
 	log.Println("app running")
 	return app.Server.ListenAndServe()
 }
 
+// New - function for create new app
 func New(db *gorm.DB, key []byte, addr string) *App {
 	app := &App{
 		DB:      db,

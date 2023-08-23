@@ -1,13 +1,14 @@
 package middleware
 
 import (
-	"net/http"
+	"fmt"
 	"log"
+	"net/http"
 	"strings"
 	"time"
-	"fmt"
 )
 
+// LoggerMW - middleware function for logging requests info
 func LoggerMW(next http.Handler) http.Handler {
 	return http.HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {

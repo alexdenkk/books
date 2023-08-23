@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Route - function for routing services
 func (app *App) Route() {
 	r := mux.NewRouter()
 
@@ -25,6 +26,7 @@ func (app *App) Route() {
 	app.Server.Handler = r
 }
 
+// RouteUsers - function for routing users service pages
 func (app *App) RouteUsers(r *mux.Router) {
 	sub := r.PathPrefix("/user").Subrouter()
 
@@ -44,6 +46,7 @@ func (app *App) RouteUsers(r *mux.Router) {
 		Methods("POST")
 }
 
+// RouteBooks - function for routing books service pages
 func (app *App) RouteBooks(r *mux.Router) {
 	sub := r.PathPrefix("/book").Subrouter()
 
@@ -59,6 +62,7 @@ func (app *App) RouteBooks(r *mux.Router) {
 		Methods("GET")
 }
 
+// RouteReviews - function for routing reviews service pages
 func (app *App) RouteReviews(r *mux.Router) {
 	sub := r.PathPrefix("/book").Subrouter()
 
@@ -75,6 +79,7 @@ func (app *App) RouteReviews(r *mux.Router) {
 	sub.HandleFunc("/for/{id}:[0-9]+/", app.MW.Auth(app.ReviewsHandler.DeleteFor))
 }
 
+// RouteGenres - function for routing genres service pages
 func (app *App) RouteGenres(r *mux.Router) {
 	sub := r.PathPrefix("/genre").Subrouter()
 

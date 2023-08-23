@@ -8,6 +8,7 @@ import (
 	"gorm.io/gorm/logger"
 )
 
+// Connect - function for connecting to database
 func Connect(dbName, dbPort, dbUser, dbPassword string) (*gorm.DB, error) {
 	dsn := []string{
 		"dbname=" + dbName,
