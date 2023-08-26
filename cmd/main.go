@@ -34,7 +34,9 @@ func main() {
 
 	log.Println("db connected")
 
+	// migration
 	model.Migrate(appDB)
+	log.Println("migration complete")
 
 	// create app
 	booksApp := app.New(appDB, []byte(jwt), addr)

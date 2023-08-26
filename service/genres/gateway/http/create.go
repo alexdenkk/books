@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// Create - Gateway layer function for creating genre
 func (h *Handler) Create(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	var genre model.Genre
 

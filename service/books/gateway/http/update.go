@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Update - gateway layer function for updating book
 func (h *Handler) Update(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 

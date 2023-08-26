@@ -6,7 +6,7 @@ import (
 	"context"
 )
 
-// Service - interface for books service
+// Service - interface for books service layer
 type Service interface {
 	GetAll(ctx context.Context) ([]model.Book, error)
 	Get(ctx context.Context, id uint) (model.Book, error)

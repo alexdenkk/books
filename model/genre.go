@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Genre - genre model struct
 type Genre struct {
 	gorm.Model
 

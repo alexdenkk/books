@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Review - review model struct
 type Review struct {
 	gorm.Model
 

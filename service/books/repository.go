@@ -5,7 +5,7 @@ import (
 	"context"
 )
 
-// Repository - interface for books repository
+// Repository - interface for books repository layer
 type Repository interface {
 	GetAll(ctx context.Context) ([]model.Book, error)
 	Get(ctx context.Context, id uint) (model.Book, error)

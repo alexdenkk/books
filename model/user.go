@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// User - user model struct
 type User struct {
 	gorm.Model
 

@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Delete - gateway layer function for deleting genre
 func (h *Handler) Delete(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 

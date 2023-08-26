@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Get - gateway layer function for getting book
 func (h *Handler) Get(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 

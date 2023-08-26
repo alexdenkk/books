@@ -6,6 +6,7 @@ import (
 	"context"
 )
 
+// Service - interface for genres service layer
 type Service interface {
 	GetAll(ctx context.Context) ([]model.Genre, error)
 	Get(ctx context.Context, id uint) (model.Genre, error)

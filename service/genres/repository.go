@@ -5,6 +5,7 @@ import (
 	"context"
 )
 
+// Repository - interface for genres repository layer
 type Repository interface {
 	GetAll(ctx context.Context) ([]model.Genre, error)
 	Get(ctx context.Context, id uint) (model.Genre, error)

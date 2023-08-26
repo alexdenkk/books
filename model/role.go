@@ -1,6 +1,7 @@
 package model
 
-const (
-	USER  uint8 = 1
-	ADMIN uint8 = 2
-)
+// USER - user permissions code
+const USER uint8 = 1
+
+// ADMIN - admin permissions code
+const ADMIN uint8 = 2
