@@ -31,19 +31,19 @@ func (app *App) RouteUsers(r *mux.Router) {
 	sub := r.PathPrefix("/user").Subrouter()
 
 	sub.HandleFunc("/{id:[0-9]+}/", app.UsersHandler.Get).
-		Methods("GET")
+		Methods(http.MethodGet)
 	sub.HandleFunc("/create/", app.MW.Auth(app.UsersHandler.Create)).
-		Methods("POST")
+		Methods(http.MethodPost)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.UsersHandler.Update)).
-		Methods("PUT")
+		Methods(http.MethodPut)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.UsersHandler.Delete)).
-		Methods("DELETE")
+		Methods(http.MethodDelete)
 	sub.HandleFunc("/login/", app.UsersHandler.Login).
-		Methods("POST")
+		Methods(http.MethodPost)
 	sub.HandleFunc("/register/", app.UsersHandler.Register).
-		Methods("POST")
+		Methods(http.MethodPost)
 	sub.HandleFunc("/change-password/", app.MW.Auth(app.UsersHandler.ChangePassword)).
-		Methods("POST")
+		Methods(http.MethodPost)
 }
 
 // RouteBooks - function for routing books service pages
@@ -51,32 +51,33 @@ func (app *App) RouteBooks(r *mux.Router) {
 	sub := r.PathPrefix("/book").Subrouter()
 
 	sub.HandleFunc("/{id:[0-9]+}/", app.BooksHandler.Get).
-		Methods("GET")
+		Methods(http.MethodGet)
 	sub.HandleFunc("/create/", app.MW.Auth(app.BooksHandler.Create)).
-		Methods("POST")
+		Methods(http.MethodPost)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.BooksHandler.Update)).
-		Methods("PUT")
+		Methods(http.MethodPut)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.BooksHandler.Delete)).
-		Methods("DELETE")
+		Methods(http.MethodDelete)
 	sub.HandleFunc("/all/", app.BooksHandler.GetAll).
-		Methods("GET")
+		Methods(http.MethodGet)
 }
 
 // RouteReviews - function for routing reviews service pages
 func (app *App) RouteReviews(r *mux.Router) {
-	sub := r.PathPrefix("/book").Subrouter()
+	sub := r.PathPrefix("/review").Subrouter()
 
 	sub.HandleFunc("/{id:[0-9]+}/", app.ReviewsHandler.Get).
-		Methods("GET")
+		Methods(http.MethodGet)
 	sub.HandleFunc("/create/", app.MW.Auth(app.ReviewsHandler.Create)).
-		Methods("POST")
+		Methods(http.MethodPost)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.ReviewsHandler.Update)).
-		Methods("PUT")
+		Methods(http.MethodPut)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.ReviewsHandler.Delete)).
-		Methods("DELETE")
+		Methods(http.MethodDelete)
 	sub.HandleFunc("/for/{id}:[0-9]+/", app.ReviewsHandler.GetFor).
-		Methods("GET")
-	sub.HandleFunc("/for/{id}:[0-9]+/", app.MW.Auth(app.ReviewsHandler.DeleteFor))
+		Methods(http.MethodGet)
+	sub.HandleFunc("/for/{id}:[0-9]+/", app.MW.Auth(app.ReviewsHandler.DeleteFor)).
+		Methods(http.MethodDelete)
 }
 
 // RouteGenres - function for routing genres service pages
@@ -84,13 +85,13 @@ func (app *App) RouteGenres(r *mux.Router) {
 	sub := r.PathPrefix("/genre").Subrouter()
 
 	sub.HandleFunc("/{id:[0-9]+}/", app.GenresHandler.Get).
-		Methods("GET")
+		Methods(http.MethodGet)
 	sub.HandleFunc("/create/", app.MW.Auth(app.GenresHandler.Create)).
-		Methods("POST")
+		Methods(http.MethodPost)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.GenresHandler.Update)).
-		Methods("PUT")
+		Methods(http.MethodPut)
 	sub.HandleFunc("/{id:[0-9]+}/", app.MW.Auth(app.GenresHandler.Delete)).
-		Methods("DELETE")
+		Methods(http.MethodDelete)
 	sub.HandleFunc("/all/", app.GenresHandler.GetAll).
-		Methods("GET")
+		Methods(http.MethodGet)
 }

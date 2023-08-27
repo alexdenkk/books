@@ -90,6 +90,7 @@
       "genre_id": 228
   }
   ```
+
  ### PUT `/book/[id]/`
   Updates book record. If book correctly updated, returns 200.
   #### Example request data
@@ -98,5 +99,78 @@
       "year": 175
   }
   ```
+
  ### DELETE `/book/[id]/`
   Deletes book record. If book deleted, returns 200.
+
+<br />
+
+# Reviews service
+ Reviews service includes operations with reviews
+
+### Usage
+ ### GET `/review/[id]/`
+  Returns review record with 200 code or http error code.
+
+ ### GET `/review/for/[id]/`
+  Returns all reviews for book by id.
+ 
+ ### POST `/review/create/`
+  Creates review. If review created, returns 201.
+  #### Example request data
+  ```json
+  {
+      "user_id": 7,
+      "book_id": 8,
+      "text": "This is the text of review",
+      "rate": 9
+  }
+  ```
+ ### PUT `/review/[id]/`
+  Updates review record. If review correctly updated, returns 200.
+
+  #### Example request data
+  ```json
+  {
+      "text": "This is the updated text of review"
+  }
+  ```
+
+ ### DELETE `/review/[id]/`
+  Deletes review record. If review deleted, returns 200.
+
+ ### DELETE `/review/for/[id]/`
+  Deletes all reviews for book by id. If reviews deleted, returns 200.
+
+<br />
+
+# Genres service
+ Genres service includes operations with genres
+
+### Usage
+ ### GET `/genre/[id]/`
+  Returns genre record with 200 code or http error code.
+
+ ### GET `/genre/all/`
+  Returns all genres records.
+ 
+ ### POST `/genre/create/`
+  Creates genre. If genre created, returns 201.
+  #### Example request data
+  ```json
+  {
+      "name": "horror",
+  }
+  ```
+ ### PUT `/genre/[id]/`
+  Updates genre record. If genre correctly updated, returns 200.
+
+  #### Example request data
+  ```json
+  {
+      "name": "fixed horror"
+  }
+  ```
+
+ ### DELETE `/genre/[id]/`
+  Deletes genre record. If genre deleted, returns 200.
