@@ -3,11 +3,12 @@ package http
 import (
 	"alexdenkk/books/model"
 	"alexdenkk/books/pkg/token"
-	"net/http"
 	"context"
 	"encoding/json"
+	"net/http"
 )
 
+// Create - Gateway layer function for creating review
 func (h *Handler) Create(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	var review model.Review
 

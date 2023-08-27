@@ -1,13 +1,15 @@
 package http
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
 	"context"
-	"strconv"
 	"encoding/json"
+	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
+// Get - gateway layer function for getting review
 func (h *Handler) Get(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
@@ -22,4 +24,3 @@ func (h *Handler) Get(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(&review)
 }
-

@@ -11,6 +11,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
+// Get - service layer function for getting user record by ID
 func (s *Service) Get(ctx context.Context, id uint) (model.User, error) {
 	user, err := s.Repository.Get(ctx, id)
 
@@ -22,6 +23,7 @@ func (s *Service) Get(ctx context.Context, id uint) (model.User, error) {
 	return user, nil
 }
 
+// Create - service layer function for creating user record
 func (s *Service) Create(ctx context.Context, user model.User, act *token.Claims) error {
 	if act.Role != model.ADMIN {
 		return users.PermissionsError
@@ -42,6 +44,7 @@ func (s *Service) Create(ctx context.Context, user model.User, act *token.Claims
 	return s.Repository.Create(ctx, user)
 }
 
+// Update - service layer function for updating user record
 func (s *Service) Update(ctx context.Context, user model.User, act *token.Claims) error {
 	// check user presense
 	prev, err := s.Repository.Get(ctx, user.ID)
@@ -72,6 +75,7 @@ func (s *Service) Update(ctx context.Context, user model.User, act *token.Claims
 	return s.Repository.Update(ctx, user)
 }
 
+// Delete - service layer function for deleting user record
 func (s *Service) Delete(ctx context.Context, id uint, act *token.Claims) error {
 	// if user want to edit himself, he must put 0 id
 	if id == 0 {
@@ -98,6 +102,7 @@ func (s *Service) Delete(ctx context.Context, id uint, act *token.Claims) error 
 	return s.Repository.Delete(ctx, id)
 }
 
+// Login - service layer function for user authorization
 func (s *Service) Login(ctx context.Context, login, password string) (string, error) {
 	// check user presense by login
 	user, err := s.Repository.GetByLogin(ctx, login)
@@ -125,6 +130,7 @@ func (s *Service) Login(ctx context.Context, login, password string) (string, er
 	return token.GenerateJWT(claims, s.SignKey)
 }
 
+// Register - service layer function for user registration
 func (s *Service) Register(ctx context.Context, login, password string) error {
 	// check if user with this login already exists
 	if _, err := s.Repository.GetByLogin(ctx, login); err == nil {
@@ -145,6 +151,7 @@ func (s *Service) Register(ctx context.Context, login, password string) error {
 	return s.Repository.Create(ctx, user)
 }
 
+// ChangePassword - service layer function for changing user password
 func (s *Service) ChangePassword(ctx context.Context, newPswd, pswd string, act *token.Claims) error {
 	// check user presense
 	user, err := s.Repository.Get(ctx, act.ID)

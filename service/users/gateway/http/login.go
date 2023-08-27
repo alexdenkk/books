@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// Login - Gateway layer function for user authorization
 func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 	var request AuthRequest
 

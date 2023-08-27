@@ -6,6 +6,7 @@ import (
 	"context"
 )
 
+// Service - interface for user service layer
 type Service interface {
 	Get(ctx context.Context, id uint) (model.User, error)
 	Create(ctx context.Context, user model.User, act *token.Claims) error

@@ -5,6 +5,7 @@ import (
 	"context"
 )
 
+// Repository - interface for reviews repository layer
 type Repository interface {
 	Get(ctx context.Context, id uint) (model.Review, error)
 	Create(ctx context.Context, review model.Review) error

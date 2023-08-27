@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// ChangePassword - Gateway layer function for changing user password
 func (h *Handler) ChangePassword(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	var request ChangePasswordRequest
 

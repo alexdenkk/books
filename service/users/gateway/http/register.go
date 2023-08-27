@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// Register - Gateway layer function for user registration
 func (h *Handler) Register(w http.ResponseWriter, r *http.Request) {
 	var request AuthRequest
 

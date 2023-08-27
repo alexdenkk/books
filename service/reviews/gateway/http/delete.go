@@ -2,12 +2,14 @@ package http
 
 import (
 	"alexdenkk/books/pkg/token"
-	"github.com/gorilla/mux"
-	"net/http"
 	"context"
+	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
+// Delete - gateway layer function for deleting review
 func (h *Handler) Delete(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 

@@ -1,13 +1,15 @@
 package http
 
 import (
-	"github.com/gorilla/mux"
+	"context"
 	"encoding/json"
 	"net/http"
-	"context"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
+// GetFor - Gateway layer function for getting all reviews for a book
 func (h *Handler) GetFor(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 

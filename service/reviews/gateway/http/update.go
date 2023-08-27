@@ -2,13 +2,15 @@ package http
 
 import (
 	"alexdenkk/books/pkg/token"
-	"github.com/gorilla/mux"
-	"net/http"
 	"context"
-	"strconv"
 	"encoding/json"
+	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
+// Update - gateway layer function for updating review
 func (h *Handler) Update(w http.ResponseWriter, r *http.Request, act *token.Claims) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 

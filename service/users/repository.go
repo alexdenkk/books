@@ -5,6 +5,7 @@ import (
 	"context"
 )
 
+// Repository - interface for user repository layer
 type Repository interface {
 	Get(ctx context.Context, id uint) (model.User, error)
 	GetByLogin(ctx context.Context, login string) (model.User, error)

@@ -6,6 +6,7 @@ import (
 	"context"
 )
 
+// Service - interface for reviews service layer
 type Service interface {
 	Get(ctx context.Context, id uint) (model.Review, error)
 	Create(ctx context.Context, review model.Review, act *token.Claims) error
