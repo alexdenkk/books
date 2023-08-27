@@ -33,5 +33,7 @@ go build -o server cmd/main.go
 ./server --help
 ```
 
+<br />
+
 # API usage
  API usage descripted in API.md file
