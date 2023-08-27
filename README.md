@@ -1,5 +1,5 @@
 # Books
-Books reviews API written with Go/Jwt/Mux/Docker/Postgres
+ Books reviews API written with Go/Jwt/Mux/Docker/Postgres
 
 <br />
 
@@ -32,3 +32,6 @@ docker-compose up -d db api
 go build -o server cmd/main.go
 ./server --help
 ```
+
+## API usage
+ API usage descripted in API.md file
