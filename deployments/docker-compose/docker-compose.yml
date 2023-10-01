@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+
   db:
     container_name: db
     image: postgres:13-alpine
@@ -15,14 +16,50 @@ services:
     expose:
       - 5432
 
-  api:
-    container_name: api
+  users:
+    container_name: users
 
     build:
-      context: ../..
-      dockerfile: deployments/docker/Dockerfile
+      context: ../../users
+      dockerfile: ../deployments/users/Dockerfile
 
-    command: ./server -db-password=12345678
+    command: ./users -db-password=12345678
 
     ports:
-      - 8080:8080
+      - 8001:8001
+
+  books:
+    container_name: books
+
+    build:
+      context: ../../books
+      dockerfile: ../deployments/books/Dockerfile
+
+    command: ./books -db-password=12345678
+
+    ports:
+      - 8002:8002
+
+  reviews:
+    container_name: reviews
+
+    build:
+      context: ../../reviews
+      dockerfile: ../deployments/reviews/Dockerfile
+
+    command: ./reviews -db-password=12345678
+
+    ports:
+      - 8003:8003
+
+  genres:
+    container_name: genres
+
+    build:
+      context: ../../genres
+      dockerfile: ../deployments/genres/Dockerfile
+
+    command: ./genres -db-password=12345678
+
+    ports:
+      - 8004:8004

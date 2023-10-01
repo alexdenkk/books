@@ -86,7 +86,7 @@
   {
       "name": "Meditations",
       "author": "Marcus Aurelius",
-      "year": 170,
+      "year": 70,
       "genre_id": 228
   }
   ```

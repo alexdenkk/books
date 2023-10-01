@@ -1,5 +1,5 @@
 # Books
- Books reviews API written with Go/Jwt/Mux/Docker/Postgres
+Books reviews microservice API written with Go/Jwt/Mux/Docker/Postgres
 
 <br />
 
@@ -18,22 +18,19 @@
 
 <br />
 
-# Usage
+# Run
 
 ## Run with docker
 ```cmd
 cd deployments/docker-compose
-docker-compose build --no-cache api
-docker-compose up -d db api
-```
-
-## View the usage of app
-```
-go build -o server cmd/main.go
-./server --help
+docker-compose up -d db
+docker-compose up -d users books reviews genres
 ```
 
 <br />
 
-# API usage
- API usage descripted in API.md file
+# Usage
+
+## Read the usage
+ - godoc documentation
+ - API.md file
